@@ -1,0 +1,30 @@
+.productCards{
+  display: flex;
+  align-items: center;
+  gap:5px;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  justify-content: space-between;
+  margin-inline: 5px;
+}
+
+.body{
+  height:100vh;
+  width:100vw;
+}
+
+.productCards::-webkit-scrollbar {
+  height: 8px;
+}
+
+.productCards::-webkit-scrollbar-thumb {
+  background: hsl(0deg 0% 0% / 61%);
+  width: 270px;
+  border-radius: 8px;
+}
+
+.productCards::-webkit-scrollbar-track{
+  background: transparent;
+  
+}
+
