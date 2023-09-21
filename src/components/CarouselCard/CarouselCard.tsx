@@ -9,11 +9,12 @@ interface Props {
   current: any;
   index:number;
   activeIndex:number;
+  videos:any;
 }
 
 
 
-const CarouselCard = ({ video, caption, onPress, active, current,index,activeIndex }: Props) => {
+const CarouselCard = ({ video,videos, caption, onPress, active, current,index,activeIndex }: Props) => {
 
   function isNullOrUndefined(value) {
     return value === undefined || value === null;
@@ -23,17 +24,17 @@ const CarouselCard = ({ video, caption, onPress, active, current,index,activeInd
 
   let cardClass:string;
   
-  if(!isNullOrUndefined(activeIndex) && (activeIndex-2) >= 0 && (activeIndex-2) === index ){
+  if(!isNullOrUndefined(activeIndex) && (((activeIndex-2) >= 0 && (activeIndex-2) === index) || (activeIndex-2 + videos.length) === index ) ){
     cardClass = "leftTwo"
   }
-  else if(!isNullOrUndefined(activeIndex) && (activeIndex-1) >= 0 && (activeIndex-1) === index ){
+  else if(!isNullOrUndefined(activeIndex) && ((activeIndex-1) >= 0 && (activeIndex-1) === index) || (activeIndex-1 + videos.length) === index ){
     cardClass = "leftOne"
-  }else if(!isNullOrUndefined(activeIndex) && activeIndex === index){
+  }else if(!isNullOrUndefined(activeIndex) && (activeIndex === index)){
     cardClass="active"
   }
-  else if(!isNullOrUndefined(activeIndex) && +activeIndex+1 === index ){
+  else if(!isNullOrUndefined(activeIndex) && (((activeIndex+1) < videos.length && (activeIndex+1) === index) || (activeIndex+1 - videos.length) === 0) ){
     cardClass = "rightOne"
-  }else if(!isNullOrUndefined(activeIndex) && +activeIndex+2 === index ){
+  }else if(!isNullOrUndefined(activeIndex) && (((activeIndex+2) < videos.length && (activeIndex+2) === index) || (activeIndex+2 - videos.length) === 0) ){
     cardClass = "rightTwo"
   }
 

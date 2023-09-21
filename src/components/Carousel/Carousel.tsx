@@ -75,6 +75,7 @@ const Carousel = ({ currentVideo, videos,setCurrentVideo,getRequestVideo }) => {
             active={currentVideo}
             index={index}
             activeIndex={activeIndex}
+            videos={videos}
             onPress={() => handleVideoClick(videoObject?.EngagementPostId)}
           />
         );
