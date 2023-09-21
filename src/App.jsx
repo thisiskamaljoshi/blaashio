@@ -89,9 +89,9 @@ function App() {
               </div>
               <div className="buttonCarousel muteBtn">
                 {mute ? (
-                  <UnMute onPress={() => setMute(false)} />
+                  <Mute onPress={() => setMute(false)} />
                 ) : (
-                  <Mute onPress={() => setMute(true)} />
+                  <UnMute onPress={() => setMute(true)} />
                 )}
               </div>
             </div>
@@ -102,6 +102,7 @@ function App() {
             videos={videos}
             handleVideoClick={handleVideoClick}
             getRequestVideo={getRequestVideo}
+            muteStatus={mute}
           />
         </Modal>
       ) : null}

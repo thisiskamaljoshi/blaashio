@@ -7,7 +7,7 @@ import CarouselCard from "../CarouselCard/CarouselCard";
 import Prev from "../../assets/svg/prev";
 import Next from "../../assets/svg/next";
 
-const Carousel = ({ currentVideo, videos,setCurrentVideo,getRequestVideo }) => {
+const Carousel = ({ currentVideo, videos,setCurrentVideo,getRequestVideo,muteStatus }) => {
 
   const [activeIndex, setActiveIndex] = useState(-1);
 
@@ -79,6 +79,7 @@ const Carousel = ({ currentVideo, videos,setCurrentVideo,getRequestVideo }) => {
             activeIndex={activeIndex}
             videos={videos}
             onPress={() => handleVideoClick(videoObject?.EngagementPostId)}
+            muteStatus={muteStatus}
           />
         );
       })}

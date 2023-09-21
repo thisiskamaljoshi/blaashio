@@ -10,11 +10,12 @@ interface Props {
   index:number;
   activeIndex:number;
   videos:any;
+  muteStatus?:Boolean;
 }
 
 
 
-const CarouselCard = ({ video,videos, caption, onPress, active, current,index,activeIndex }: Props) => {
+const CarouselCard = ({ video,videos, caption, onPress, active, current,index,activeIndex,muteStatus }: Props) => {
 
   function isNullOrUndefined(value) {
     return value === undefined || value === null;
@@ -45,7 +46,7 @@ const CarouselCard = ({ video,videos, caption, onPress, active, current,index,ac
       onClick={onPress}
     >
       {active?.StoryId === current && active?.Url ? (
-        <video className={styles.video} controls muted playsInline>
+        <video className={styles.video} controls muted={!!muteStatus} playsInline>
           <source src={active?.Url} type="video/mp4" />
           Your browser does not support the video tag.
         </video> 
