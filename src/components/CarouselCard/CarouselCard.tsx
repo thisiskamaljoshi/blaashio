@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from "react";
 import styles from "./carouselCard.module.css";
+import Video from "./Video/video";
 
 interface Props {
   video: string;
@@ -45,17 +46,21 @@ const CarouselCard = ({ video,videos, caption, onPress, active, current,index,ac
       className={`${styles.card} ${ styles[cardClass] }`}
       onClick={onPress}
     >
-      {active?.StoryId === current && active?.Url ? (
-        <video className={styles.video} controls muted={!!muteStatus} playsInline>
-          <source src={active?.Url} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video> 
+      {active?.StoryId === current  ? (
+        <Video muteStatus={muteStatus} autoplay={true}  videoUrl={active?.Url}/>
       ) : (
-        <video className={styles.video} muted playsInline>
-          <source src={video} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        null
       )}
+
+
+      {active?.StoryId !== current  ? (
+        <Video muteStatus={true} autoplay={true} videoUrl={video}/>
+      ) : (
+        null
+      )}
+
+
+      
 
       {/* <div className={styles.caption}>
         <p className={styles.text}>{caption}</p>
