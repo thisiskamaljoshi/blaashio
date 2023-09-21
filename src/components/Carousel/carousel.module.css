@@ -1,25 +1,45 @@
-.carouselMain{
-    width: 100vw;
-    height: 100vh;
-    padding-inline: 5px;
-    position: relative;
+.carouselMain {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
 }
 
-.prev,.next{
-    position: absolute;
-    width: 30px;
-    height:30px;
-    top:50%;
-    transform: translate(-50%, -50%);
+.prev,
+.next {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+    inset-block-start: 50%;
+  padding: 7px;
+  color: #fff;
+  backdrop-filter: blur(5px);
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 4px 12px;
+  border-radius: 10px;
+  transform: matrix(0.71, 0.71, 0.71, -0.71, 0, 0);
+  z-index: 12;
+  cursor: pointer;
 }
 
-.prev{
-    left:30px;
+.prev {
+  left: 30px;
 }
 
 .next {
-    right:30px;
+right: 30px;
 }
 
-        
+.prev > svg,
+.next > svg {
+  transform: rotate(45deg);
+}
 
+@media screen and (max-width:660px) {
+  .prev {
+      left: 10px;
+    }
+  
+    .next {
+      right: 10px;
+    }
+
+}

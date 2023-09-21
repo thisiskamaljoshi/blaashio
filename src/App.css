@@ -1,58 +1,79 @@
-.productCards{
+.body {
+  height: 100vh;
+  width: 100vw;
+}
+
+.productCards {
   display: flex;
   align-items: center;
-  gap:5px;
+  justify-content: space-between;
+  gap: 5px;
   overflow-y: hidden;
   overflow-x: scroll;
-  justify-content: space-between;
   margin-inline: 5px;
 }
 
-.body{
-  height:100vh;
-  width:100vw;
-}
-
 .productCards::-webkit-scrollbar {
-  height: 8px;
+  height: 7px;
 }
 
 .productCards::-webkit-scrollbar-thumb {
   background: hsl(0deg 0% 0% / 61%);
-  width: 270px;
   border-radius: 8px;
 }
 
-.productCards::-webkit-scrollbar-track{
+.productCards::-webkit-scrollbar-track {
   background: transparent;
 }
 
-
 .modalButtons {
   position: absolute;
-  right:0;
-  margin:10px;
+  inset-inline-end: 0;
+  inset-block-start: 10px;
+  margin: 10px;
   display: flex;
-  gap: 5px;
+  gap: 15px;
   flex-direction: column;
 }
 
-
-.buttonsMain{
+.buttonsMain {
   position: relative;
-  z-index:20;
+  z-index: 20;
 }
 
-.buttonCarousel{
-  width:20px;
-  height:20px;
-  color:#fff;
+.buttonCarousel {
+  color: #fff;
+  height: 35px;
+  width: 35px;
+  backdrop-filter: blur(5px);
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 4px 12px;
+  border-radius: 10px;
+  transform: matrix(0.71, 0.71, 0.71, -0.71, 0, 0);
+  cursor:pointer;
 }
 
-.closeBtn  {
-  padding: 2px;
+.buttonCarousel > svg {
+  transform: rotate(45deg);
 }
 
-.muteBtn{
-  padding: 1px;
+.closeBtn {
+  padding: 10px;
+}
+
+.muteBtn {
+  padding: 8px;
+}
+
+@media screen and (max-width: 660px) {
+  .buttonCarousel {
+    height: 25px;
+    width: 25px;
+  }
+  .closeBtn {
+    padding: 5px;
+  }
+
+  .muteBtn {
+    padding: 4px;
+  }
 }

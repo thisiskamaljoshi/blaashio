@@ -1,66 +1,75 @@
 .card {
-    position: absolute;
-    border-radius: 15px;
-    overflow: hidden;
-    width: 240px;
-    margin-block: 10px;
-    transform: translate(-50%, -50%);
-    display: none;
-    margin: 0 auto;
-    top: 50%;
-    will-change: transform;
+  position: absolute;
+  inset-block-start: 50%;
+  border-radius: 15px;
+  overflow: hidden;
+  width: 240px;
+  transform: translate(-50%, -50%);
+  display: none;
+  margin: 10px auto;
+  will-change: transform;
+  z-index: 10;
+  max-height: 70%;
 }
 
-.card.leftOne,.card.leftTwo,.card.active,.card.rightOne,.card.rightTwo {
-    display: block;
+.card.leftOne,
+.card.leftTwo,
+.card.active,
+.card.rightOne,
+.card.rightTwo {
+  display: block;
+}
+
+.card.leftTwo,
+.card.rightTwo {
+  z-index: 6;
+  max-height: 50%;
+  cursor: pointer;
+}
+
+.card.leftOne,
+.card.rightOne {
+  z-index: 8;
+  max-height: 60%;
+  cursor: pointer;
 }
 
 .card.leftTwo {
-    left: 30%;
-    z-index: 6;
-    height:50%;
+  left: 30%;
 }
 
 .card.leftOne {
-    left: 40%;
-    z-index: 8;
-    max-height:60%;
+  left: 40%;
 }
 
-.card.active{
-    left: 50%;
-    z-index:10;
-    max-height:80%;
+.card.active {
+  left: 50%;
 }
-
 
 .card.rightOne {
-    left: 60%;
-    z-index: 8;
-    max-height: 60%;
+  left: 60%;
 }
 
 .card.rightTwo {
-    left: 70%;
-    z-index: 6;
-    max-height: 50%;
+  left: 70%;
 }
 
+.video {
+  width: 240px;
+}
 
-.video {}
-
-/* .caption {
-    position: absolute;
-    background-color: hsl(0deg 0% 0% / 61%);
-    bottom: 0;
-    right: 0;
+@media screen and (max-width: 660px) {
+  .card.card {
+    max-height: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
     width: 100%;
-    height: 75px;
-} */
+    margin: 0;
+    border-radius: 0;
+  }
 
-.text {
-    font-size: 22px;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: 1.5px;
+  .video {
+    width: 100%;
+  }
 }
