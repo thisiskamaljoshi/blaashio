@@ -30,6 +30,8 @@ function App() {
     IsTagged: false,
   };
 
+  Object.freeze(videosBody);
+
   const videosConfig = {
     headers: {
       "x-api-key": `${import.meta.env.VITE_X_API_KEY}`,
@@ -37,18 +39,7 @@ function App() {
     },
   };
 
-  // API request functions
-  const postRequestVideos = async () => {
-    try {
-      // Send a POST request to fetch videos
-      const response = await axios.post(videosUrl, videosBody, videosConfig);
-      if (response?.data?.data?.Feeds) {
-        setVideos([...response.data.data.Feeds]);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  Object.freeze(videosConfig);
 
   /**
    * Send a GET request to fetch a specific video and set it as the current video.
@@ -92,6 +83,18 @@ function App() {
 
   // Fetch videos on initial load
   useEffect(() => {
+    // API request functions
+    const postRequestVideos = async () => {
+      try {
+        // Send a POST request to fetch videos
+        const response = await axios.post(videosUrl, videosBody, videosConfig);
+        if (response?.data?.data?.Feeds) {
+          setVideos([...response.data.data.Feeds]);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
     postRequestVideos();
   }, []);
 
