@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import styles from "./carouselCard.module.css";
-import Video from "./Video/video";
 
 interface Props {
   video: string;
   caption: string;
-  onPress: any;
+  onPress: () => void;
   active: any;
   current: any;
   index: number;
   activeIndex: number;
-  videos: any;
-  muteStatus?: Boolean;
+  videos: any[];
+  muteStatus?: boolean;
 }
 
 const CarouselCard = ({

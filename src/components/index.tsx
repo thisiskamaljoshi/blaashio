@@ -1,6 +1,4 @@
-import Card from "./Card/card";
-import Modal from "./Modal/Modal";
-import Carousel from "./Carousel/Carousel";
-import CarouselCard from "./CarouselCard/CarouselCard";
-
-export { Card, Modal, Carousel, CarouselCard };
+export { default as Card } from './Card/Card';
+export { default as Modal } from './Modal/Modal';
+export { default as Carousel } from './Carousel/Carousel';
+export { default as CarouselCard } from './CarouselCard/CarouselCard';

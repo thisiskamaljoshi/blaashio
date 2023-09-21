@@ -1,17 +1,19 @@
+.body {
+  height: 100vh;
+  width: 100vw;
+}
+
 .productCards{
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap:5px;
   overflow-y: hidden;
   overflow-x: scroll;
-  justify-content: space-between;
   margin-inline: 5px;
 }
 
-.body{
-  height:100vh;
-  width:100vw;
-}
+
 
 .productCards::-webkit-scrollbar {
   height: 8px;
@@ -30,7 +32,7 @@
 
 .modalButtons {
   position: absolute;
-  right:0;
+  inset-inline-end:0;
   margin:10px;
   display: flex;
   gap: 5px;

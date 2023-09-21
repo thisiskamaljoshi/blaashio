@@ -1,90 +1,71 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./carousel.module.css";
-import axios from "axios";
-import Card from "../Card/card";
-import CarouselCard from "../CarouselCard/CarouselCard";
+import { CarouselCard } from "../index";
 
-import Prev from "../../assets/svg/prev";
-import Next from "../../assets/svg/next";
+import { Prev, Next } from "../../assets";
 
-const Carousel = ({ currentVideo, videos,setCurrentVideo,getRequestVideo,muteStatus }) => {
-
+const Carousel = ({
+  currentVideo,
+  videos,
+  getRequestVideo,
+  muteStatus,
+  oneVideoUrl,
+  videosConfig,
+}) => {
   const [activeIndex, setActiveIndex] = useState(-1);
 
+  const handleInteraction = (id, direction) => {
+    let newIndex;
 
-  const oneVideoUrl = `https://fxojmluid9.execute-api.ap-south-1.amazonaws.com/Prod/api/engt/getPostContent?eid=`;
-
-  const videosConfig = {
-    headers: {
-      "x-api-key": "MXqO3cDcr492OTPGZZAot7akPvLmfKbA4bKt5Ryr",
-      "x-tenant-key": "BLAASH1122",
-    },
-  };
-
-  const findActiveIndex=(videos,currentVideo)=>{
-    videos.map((videoObject,index)=>{
-      if((currentVideo?.StoryId) === videoObject?.EngagementPostId){
-        setActiveIndex(index)
-      }
-    })
-  }
-  
-
-  
-
-  const handleVideoClick = (id) => {
-    getRequestVideo(oneVideoUrl + id, videosConfig);
-    findActiveIndex(videos,currentVideo)
-  };
-
-  const handlePrevClick = (activeIndex) => {
-    
-    if(activeIndex === 0){
-      getRequestVideo(oneVideoUrl + videos[videos.length-1]?.EngagementPostId, videosConfig);
-      setActiveIndex(videos.length-1);
-    }else{
-      setActiveIndex(prev => prev-1);
-      getRequestVideo(oneVideoUrl + videos[activeIndex-1]?.EngagementPostId, videosConfig);
+    if (direction === "prev") {
+      newIndex = (activeIndex - 1 + videos.length) % videos.length;
+    } else if (direction === "next") {
+      newIndex = (activeIndex + 1) % videos.length;
+    } else {
+      newIndex = videos.findIndex((video) => video.EngagementPostId === id);
     }
-  };
 
-  const handleNextClick = (activeIndex) => {
-    if(activeIndex === videos.length-1){
-      getRequestVideo(oneVideoUrl + videos[0]?.EngagementPostId, videosConfig);
-      setActiveIndex(0);
-    }else{
-      setActiveIndex(next => next+1);
-      getRequestVideo(oneVideoUrl + videos[activeIndex+1]?.EngagementPostId, videosConfig);
-    }
+    getRequestVideo(
+      oneVideoUrl + videos[newIndex].EngagementPostId,
+      videosConfig
+    );
+    setActiveIndex(newIndex);
   };
 
   useEffect(() => {
-    findActiveIndex(videos,currentVideo)
-  }, [currentVideo])
+    const findActiveIndex = () => {
+      const newIndex = videos.findIndex(
+        (videoObject) => currentVideo?.StoryId === videoObject?.EngagementPostId
+      );
+      if (newIndex !== -1) {
+        setActiveIndex(newIndex);
+      }
+    };
+
+    findActiveIndex();
+  }, [currentVideo, videos]);
 
   return (
     <div className={styles.carouselMain}>
       <div className={`${styles.prev} ${styles.navBtns}`}>
-        <Prev onPress={() => handlePrevClick(activeIndex)} />
+        <Prev onPress={() => handleInteraction(null, "prev")} />
       </div>
-      {videos.map((videoObject,index) => {
-        return (
-          <CarouselCard
-            key={videoObject?.EngagementPostId}
-            current={videoObject?.EngagementPostId}
-            video={videoObject?.Thumbnail_URL}
-            caption={videoObject?.Thumbnail_Title}
-            active={currentVideo}
-            index={index}
-            activeIndex={activeIndex}
-            videos={videos}
-            onPress={() => handleVideoClick(videoObject?.EngagementPostId)}
-            muteStatus={muteStatus}
-          />
-        );
-      })}
-      <div className={ `${styles.next} ${styles.navBtns}`}>
-        <Next onPress={() => handleNextClick(activeIndex)} />
+      {videos.map((videoObject, index) => (
+        <CarouselCard
+          key={videoObject?.EngagementPostId}
+          current={videoObject?.EngagementPostId}
+          video={videoObject?.Thumbnail_URL}
+          caption={videoObject?.Thumbnail_Title}
+          active={currentVideo}
+          index={index}
+          activeIndex={activeIndex}
+          videos={videos}
+          onPress={() => handleInteraction(videoObject?.EngagementPostId, null)}
+          muteStatus={muteStatus}
+        />
+      ))}
+      <div className={`${styles.next} ${styles.navBtns}`}>
+        <Next onPress={() => handleInteraction(null, "next")} />
       </div>
     </div>
   );
