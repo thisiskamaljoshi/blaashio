@@ -1,15 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import Card from "./components/Card/card";
-import Modal from "./components/Modal/Modal";
+import { Card, Modal, Carousel } from "./components";
 
-import Close from "./assets/svg/close";
-import Mute from "./assets/svg/mute";
-import UnMute from "./assets/svg/umMute";
+import { Close, Mute, UnMute } from "./assets";
 
 import "./App.css";
-import Carousel from "./components/Carousel/Carousel";
 
 function App() {
   const [videos, setVideos] = useState([]);
@@ -19,20 +15,22 @@ function App() {
 
   const [showCarousel, setShowCarousel] = useState(false);
 
-  const videosUrl = `https://fxojmluid9.execute-api.ap-south-1.amazonaws.com/Prod/api/engt/getfeeds_v1`;
-  const oneVideoUrl = `https://fxojmluid9.execute-api.ap-south-1.amazonaws.com/Prod/api/engt/getPostContent?eid=`;
+  const videosUrl = `${import.meta.env.VITE_API_PATH}/getfeeds_v1`;
+
+  const oneVideoUrl = `${import.meta.env.VITE_API_PATH}/getPostContent?eid=`;
+
   const videosBody = {
     Index: 1,
     ContentType: [2],
     ProductCategory: [],
-    PlayListCode: "XL7OXUUX_638264173348576143",
+    PlayListCode: `${import.meta.env.VITE_VIDEO_PLAYLIST_CODE}`,
     IsTagged: false,
   };
 
   const videosConfig = {
     headers: {
-      "x-api-key": "MXqO3cDcr492OTPGZZAot7akPvLmfKbA4bKt5Ryr",
-      "x-tenant-key": "BLAASH1122",
+      "x-api-key": `${import.meta.env.VITE_X_API_KEY}`,
+      "x-tenant-key": `${import.meta.env.VITE_X_TENANT_KEY}`,
     },
   };
 
@@ -58,8 +56,6 @@ function App() {
   useEffect(() => {
     postRequestVideos(videosUrl, videosBody, videosConfig);
   }, []);
-
-  // useEffect(() => {}, [currentVideo]);
 
   const handleVideoClick = (id) => {
     getRequestVideo(oneVideoUrl + id, videosConfig);
