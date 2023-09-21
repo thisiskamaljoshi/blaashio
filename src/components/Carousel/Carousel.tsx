@@ -64,7 +64,7 @@ const Carousel = ({ currentVideo, videos,setCurrentVideo,getRequestVideo }) => {
 
   return (
     <div className={styles.carouselMain}>
-      <div className={styles.prev}>
+      <div className={`${styles.prev} ${styles.navBtns}`}>
         <Prev onPress={() => handlePrevClick(activeIndex)} />
       </div>
       {videos.map((videoObject,index) => {
@@ -82,7 +82,7 @@ const Carousel = ({ currentVideo, videos,setCurrentVideo,getRequestVideo }) => {
           />
         );
       })}
-      <div className={styles.next}>
+      <div className={ `${styles.next} ${styles.navBtns}`}>
         <Next onPress={() => handleNextClick(activeIndex)} />
       </div>
     </div>
