@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import styles from "./carouselCard.module.css";
 
 interface Props {
@@ -14,38 +14,32 @@ interface Props {
 
 
 const CarouselCard = ({ video, caption, onPress, active, current,index,activeIndex }: Props) => {
-  console.log(active?.StoryId === current, "Video", active?.Url, video);
-  //   if(active===current){
-  //   console.log(true,video);
-  // }
+
+  function isNullOrUndefined(value) {
+    return value === undefined || value === null;
+  }
+
+ 
 
   let cardClass:string;
   
-  if(activeIndex && activeIndex-2 >= 0 && activeIndex-2 === index ){
-    console.log(activeIndex,index,"leftTwo")
+  if(!isNullOrUndefined(activeIndex) && (activeIndex-2) >= 0 && (activeIndex-2) === index ){
     cardClass = "leftTwo"
   }
-  else if(activeIndex && activeIndex-1 >= 0 && activeIndex-1 === index ){
-    console.log(activeIndex,index,"leftOne")
+  else if(!isNullOrUndefined(activeIndex) && (activeIndex-1) >= 0 && (activeIndex-1) === index ){
     cardClass = "leftOne"
-  }else if(activeIndex && activeIndex === index){
-    console.log(activeIndex,index,"active")
+  }else if(!isNullOrUndefined(activeIndex) && activeIndex === index){
     cardClass="active"
   }
-  else if(activeIndex && activeIndex+1 >= 0 && activeIndex+1 === index ){
-    console.log(activeIndex,index,"rightOne")
+  else if(!isNullOrUndefined(activeIndex) && +activeIndex+1 === index ){
     cardClass = "rightOne"
-  }else if(activeIndex && activeIndex+2 >= 0 && activeIndex+2 === index ){
-    console.log(activeIndex,index,"rightTwo")
+  }else if(!isNullOrUndefined(activeIndex) && +activeIndex+2 === index ){
     cardClass = "rightTwo"
   }
 
   return (
     <div
-      className={`${styles.card} ${
-        // @ts-ignore
-        active?.StoryId === current ? styles[cardClass] : ""
-      }`}
+      className={`${styles.card} ${ styles[cardClass] }`}
       onClick={onPress}
     >
       {active?.StoryId === current ? (

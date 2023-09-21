@@ -59,6 +59,8 @@ function App() {
     postRequestVideos(videosUrl, videosBody, videosConfig);
   }, []);
 
+  // useEffect(() => {}, [currentVideo]);
+
   const handleVideoClick = (id) => {
     getRequestVideo(oneVideoUrl + id, videosConfig);
     setShowCarousel(true);
@@ -96,6 +98,7 @@ function App() {
           </div>
           <Carousel
             currentVideo={currentVideo}
+            setCurrentVideo={setCurrentVideo}
             videos={videos}
             handleVideoClick={handleVideoClick}
             getRequestVideo={getRequestVideo}

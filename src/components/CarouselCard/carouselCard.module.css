@@ -4,64 +4,43 @@
     overflow: hidden;
     width: 240px;
     margin-block: 10px;
-}
-
-.leftOne {}
-
-.leftTwo{}
-
-.active{
-
-}
-
-.rightOne {}
-
-.rightTwo {}
-
-.card.leftTwo {
+    transform: translate(-50%, -50%);
+    display: none;
     margin: 0 auto;
     top: 50%;
+    will-change: transform;
+}
+
+.card.leftOne,.card.leftTwo,.card.active,.card.rightOne,.card.rightTwo {
+    display: block;
+}
+
+.card.leftTwo {
     left: 30%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
+    z-index: 6;
+    
 }
 
 .card.leftOne {
-    margin: 0 auto;
-    top: 50%;
     left: 40%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
+    z-index: 8;
 }
 
 .card.active{
-    margin:0 auto;
-    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     z-index:10;
-    width: 540px;
 }
 
 
 .card.rightOne {
-    margin: 0 auto;
-    top: 50%;
     left: 60%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
+    z-index: 8;
 }
 
 .card.rightTwo {
-    margin: 0 auto;
-    top: 50%;
     left: 70%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
+    z-index: 6;
 }
-
-
-
 
 
 .video {}

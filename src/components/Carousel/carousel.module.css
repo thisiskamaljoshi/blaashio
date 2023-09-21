@@ -5,5 +5,21 @@
     position: relative;
 }
 
+.prev,.next{
+    position: absolute;
+    width: 30px;
+    height:30px;
+    top:50%;
+    transform: translate(-50%, -50%);
+}
+
+.prev{
+    left:30px;
+}
+
+.next {
+    right:30px;
+}
+
         
 
