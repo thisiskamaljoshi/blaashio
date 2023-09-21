@@ -53,3 +53,19 @@ left: 40%;
 .video {
   width: 240px;
 }
+
+
+@media screen and (max-width:660px) {
+  .card.card {
+      max-height: 100%;
+      left:50%;
+      transform: translate(-50%, -50%);
+      height:100%;
+      width:100%;
+      margin: 0;
+    }
+
+    .video {
+      width: 100%;
+    }
+}

@@ -16,6 +16,7 @@
   box-shadow: rgba(0, 0, 0, 0.22) 0px 4px 12px;
   border-radius: 10px;
   transform: matrix(0.71, 0.71, 0.71, -0.71, 0, 0);
+  z-index: 12;
 }
 
 .prev {
@@ -29,4 +30,15 @@ right: 30px;
 .prev > svg,
 .next > svg {
   transform: rotate(45deg);
+}
+
+@media screen and (max-width:660px) {
+  .prev {
+      left: 10px;
+    }
+  
+    .next {
+      right: 10px;
+    }
+
 }
