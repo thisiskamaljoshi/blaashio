@@ -37,23 +37,25 @@ const Carousel = ({ currentVideo, videos,setCurrentVideo,getRequestVideo }) => {
     findActiveIndex(videos,currentVideo)
   };
 
-  const handlePrevClick = (id,activeIndex) => {
-    // getRequestVideo(oneVideoUrl + id, videosConfig);
+  const handlePrevClick = (activeIndex) => {
+    
     if(activeIndex === 0){
+      getRequestVideo(oneVideoUrl + videos[videos.length-1]?.EngagementPostId, videosConfig);
       setActiveIndex(videos.length-1);
     }else{
       setActiveIndex(prev => prev-1);
+      getRequestVideo(oneVideoUrl + videos[activeIndex-1]?.EngagementPostId, videosConfig);
     }
   };
 
-  const handleNextClick = (id,activeIndex) => {
-    // getRequestVideo(oneVideoUrl + id, videosConfig);
+  const handleNextClick = (activeIndex) => {
     if(activeIndex === videos.length-1){
+      getRequestVideo(oneVideoUrl + videos[0]?.EngagementPostId, videosConfig);
       setActiveIndex(0);
     }else{
       setActiveIndex(next => next+1);
+      getRequestVideo(oneVideoUrl + videos[activeIndex+1]?.EngagementPostId, videosConfig);
     }
-    
   };
 
   useEffect(() => {
@@ -63,7 +65,7 @@ const Carousel = ({ currentVideo, videos,setCurrentVideo,getRequestVideo }) => {
   return (
     <div className={styles.carouselMain}>
       <div className={styles.prev}>
-        <Prev onPress={() => handlePrevClick(currentVideo?.StoryId,activeIndex)} />
+        <Prev onPress={() => handlePrevClick(activeIndex)} />
       </div>
       {videos.map((videoObject,index) => {
         return (
@@ -81,7 +83,7 @@ const Carousel = ({ currentVideo, videos,setCurrentVideo,getRequestVideo }) => {
         );
       })}
       <div className={styles.next}>
-        <Next onPress={() => handleNextClick(currentVideo?.StoryId,activeIndex)} />
+        <Next onPress={() => handleNextClick(activeIndex)} />
       </div>
     </div>
   );

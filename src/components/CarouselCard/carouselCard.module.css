@@ -47,7 +47,9 @@
 }
 
 
-.video {}
+.video {
+    width:240px;
+}
 
 /* .caption {
     position: absolute;
