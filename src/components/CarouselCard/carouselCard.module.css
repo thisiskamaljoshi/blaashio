@@ -18,28 +18,32 @@
 .card.leftTwo {
     left: 30%;
     z-index: 6;
-    
+    height:50%;
 }
 
 .card.leftOne {
     left: 40%;
     z-index: 8;
+    max-height:60%;
 }
 
 .card.active{
     left: 50%;
     z-index:10;
+    max-height:80%;
 }
 
 
 .card.rightOne {
     left: 60%;
     z-index: 8;
+    max-height: 60%;
 }
 
 .card.rightTwo {
     left: 70%;
     z-index: 6;
+    max-height: 50%;
 }
 
 
