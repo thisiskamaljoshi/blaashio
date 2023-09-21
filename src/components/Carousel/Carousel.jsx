@@ -69,7 +69,7 @@ const Carousel = ({
 
   return (
     <div className={styles.carouselMain}>
-      <div className={`${styles.prev} ${styles.navBtns}`}>
+      <div className={`${styles.prev}`}>
         <Prev onPress={() => handleInteraction(null, "prev")} />
       </div>
       {videos.map((videoObject, index) => (
@@ -86,7 +86,7 @@ const Carousel = ({
           muteStatus={muteStatus}
         />
       ))}
-      <div className={`${styles.next} ${styles.navBtns}`}>
+      <div className={`${styles.next}`}>
         <Next onPress={() => handleInteraction(null, "next")} />
       </div>
     </div>

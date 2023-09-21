@@ -20,14 +20,18 @@
   display: block;
 }
 
-.card.leftTwo,.card.rightTwo{
+.card.leftTwo,
+.card.rightTwo {
   z-index: 6;
   max-height: 50%;
+  cursor: pointer;
 }
 
-.card.leftOne,.card.rightOne{
-    z-index: 8;
-    max-height: 60%;
+.card.leftOne,
+.card.rightOne {
+  z-index: 8;
+  max-height: 60%;
+  cursor: pointer;
 }
 
 .card.leftTwo {
@@ -35,7 +39,7 @@
 }
 
 .card.leftOne {
-left: 40%;
+  left: 40%;
 }
 
 .card.active {
@@ -54,19 +58,18 @@ left: 40%;
   width: 240px;
 }
 
-
-@media screen and (max-width:660px) {
+@media screen and (max-width: 660px) {
   .card.card {
-      max-height: 100%;
-      left:50%;
-      transform: translate(-50%, -50%);
-      height:100%;
-      width:100%;
-      margin: 0;
-      border-radius: 0;
-    }
+    max-height: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
 
-    .video {
-      width: 100%;
-    }
+  .video {
+    width: 100%;
+  }
 }
