@@ -1,12 +1,18 @@
-import React, { useEffect, useState, useRef, ReactNode } from "react";
+import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
-type props = {
-  children: ReactNode;
-};
+import PropTypes from "prop-types";
 
-const Modal = ({ children }: props) => {
-  const elRef = useRef<HTMLDivElement | null>(null);
+/**
+ * Modal component for rendering content outside the normal DOM hierarchy.
+ *
+ * @param {Object} props - The component's props.
+ * @param {ReactNode} props.children - The content to render within the modal.
+ * @returns {JSX.Element} The rendered JSX element.
+ */
+
+const Modal = ({ children }) => {
+  const elRef = useRef(null);
 
   if (!elRef.current) {
     elRef.current = document.createElement("div");
@@ -28,6 +34,11 @@ const Modal = ({ children }: props) => {
   }, []);
 
   return elRef.current ? createPortal(children, elRef.current) : null;
+};
+
+// Prop type validation
+Modal.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default Modal;

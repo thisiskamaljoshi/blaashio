@@ -1,8 +1,23 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styles from "./carousel.module.css";
 import { CarouselCard } from "../index";
 
 import { Prev, Next } from "../../assets";
+
+import PropTypes from "prop-types";
+
+/**
+ * Carousel component to display a carousel of videos.
+ *
+ * @param {Object} props - The component's props.
+ * @param {Object} props.currentVideo - The currently active video.
+ * @param {Array} props.videos - An array of video objects to display.
+ * @param {function} props.getRequestVideo - A function to request video data.
+ * @param {boolean} props.muteStatus - The mute status for the videos.
+ * @param {string} props.oneVideoUrl - The URL for fetching a single video.
+ * @param {Object} props.videosConfig - Configuration for video requests.
+ * @returns {JSX.Element} The rendered JSX element.
+ */
 
 const Carousel = ({
   currentVideo,
@@ -13,6 +28,13 @@ const Carousel = ({
   videosConfig,
 }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
+
+  /**
+   * Handle interactions with the carousel.
+   *
+   * @param {string} id - The ID of the video.
+   * @param {string} direction - The direction of interaction ("prev" or "next").
+   */
 
   const handleInteraction = (id, direction) => {
     let newIndex;
@@ -69,6 +91,16 @@ const Carousel = ({
       </div>
     </div>
   );
+};
+
+// Prop type validation
+Carousel.propTypes = {
+  currentVideo: PropTypes.object.isRequired,
+  videos: PropTypes.array.isRequired,
+  getRequestVideo: PropTypes.func.isRequired,
+  muteStatus: PropTypes.bool.isRequired,
+  oneVideoUrl: PropTypes.string.isRequired,
+  videosConfig: PropTypes.object.isRequired,
 };
 
 export default Carousel;

@@ -4,6 +4,14 @@ import { Card, Modal, Carousel } from "./components";
 import { Close, Mute, UnMute } from "./assets";
 import "./App.css";
 
+import PropTypes from "prop-types";
+
+/**
+ * Main application component.
+ *
+ * @component
+ */
+
 function App() {
   const [videos, setVideos] = useState([]);
   const [currentVideo, setCurrentVideo] = useState({});
@@ -42,6 +50,12 @@ function App() {
     }
   };
 
+  /**
+   * Send a GET request to fetch a specific video and set it as the current video.
+   *
+   * @param {string} url - The URL to fetch the video from.
+   */
+
   const getRequestVideo = async (url) => {
     try {
       // Send a GET request to fetch a specific video
@@ -53,6 +67,13 @@ function App() {
   };
 
   // Event handlers
+
+  /**
+   * Handle the click event on a video card.
+   *
+   * @param {string} id - The ID of the clicked video card.
+   */
+
   const handleVideoClick = (id) => {
     // Fetch and display a specific video when a card is clicked
     getRequestVideo(oneVideoUrl + id);
@@ -116,5 +137,22 @@ function App() {
     </div>
   );
 }
+
+// Prop type validation
+App.propTypes = {
+  videos: PropTypes.array,
+  currentVideo: PropTypes.object,
+  mute: PropTypes.bool,
+  showCarousel: PropTypes.bool,
+  videosUrl: PropTypes.string,
+  oneVideoUrl: PropTypes.string,
+  videosBody: PropTypes.object,
+  videosConfig: PropTypes.object,
+  postRequestVideos: PropTypes.func,
+  getRequestVideo: PropTypes.func,
+  handleVideoClick: PropTypes.func,
+  toggleMute: PropTypes.func,
+  toggleCarousel: PropTypes.func,
+};
 
 export default App;

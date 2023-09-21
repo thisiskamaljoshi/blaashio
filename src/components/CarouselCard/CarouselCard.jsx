@@ -1,21 +1,27 @@
-import React, { useState, useEffect } from "react";
 import styles from "./carouselCard.module.css";
 
-interface Props {
-  video: string;
-  caption: string;
-  onPress: () => void;
-  active: any;
-  current: any;
-  index: number;
-  activeIndex: number;
-  videos: any[];
-  muteStatus?: boolean;
-}
+import PropTypes from "prop-types";
+
+/**
+ * CarouselCard component to display a video card within a carousel.
+ *
+ * @param {Object} props - The component's props.
+ * @param {string} props.video - The URL of the video to display.
+ * @param {Array} props.videos - An array of video objects.
+ * @param {string} props.caption - The caption for the video.
+ * @param {function} props.onPress - The click event handler function.
+ * @param {Object} props.active - The active video object.
+ * @param {string} props.current - The ID of the currently active video.
+ * @param {number} props.index - The index of the video card in the carousel.
+ * @param {number} props.activeIndex - The index of the active video in the carousel.
+ * @param {boolean} props.muteStatus - The mute status for the video.
+ * @returns {JSX.Element} The rendered JSX element.
+ */
 
 const CarouselCard = ({
   video,
   videos,
+  // eslint-disable-next-line no-unused-vars
   caption,
   onPress,
   active,
@@ -23,12 +29,12 @@ const CarouselCard = ({
   index,
   activeIndex,
   muteStatus,
-}: Props) => {
+}) => {
   function isNullOrUndefined(value) {
     return value === undefined || value === null;
   }
 
-  let cardClass: string;
+  let cardClass;
 
   if (
     !isNullOrUndefined(activeIndex) &&
@@ -80,12 +86,21 @@ const CarouselCard = ({
           Your browser does not support the video tag.
         </video>
       ) : null}
-
-      {/* <div className={styles.caption}>
-        <p className={styles.text}>{caption}</p>
-      </div> */}
     </div>
   );
+};
+
+// Prop type validation
+CarouselCard.propTypes = {
+  video: PropTypes.string.isRequired,
+  videos: PropTypes.array.isRequired,
+  caption: PropTypes.string,
+  onPress: PropTypes.func.isRequired,
+  active: PropTypes.object,
+  current: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+  activeIndex: PropTypes.number,
+  muteStatus: PropTypes.bool.isRequired,
 };
 
 export default CarouselCard;
