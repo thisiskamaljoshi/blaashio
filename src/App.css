@@ -25,6 +25,33 @@
 
 .productCards::-webkit-scrollbar-track{
   background: transparent;
-  
 }
 
+
+.modalButtons {
+  position: absolute;
+  right:0;
+  margin:10px;
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+
+
+.buttonsMain{
+  position: relative;
+}
+
+.buttonCarousel{
+  width:20px;
+  height:20px;
+  color:#fff;
+}
+
+.closeBtn  {
+  padding: 2px;
+}
+
+.muteBtn{
+  padding: 1px;
+}
